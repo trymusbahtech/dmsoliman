@@ -9,7 +9,7 @@
   const copy = isEnglish ? {
     home: 'Home',
     doctor: 'Dr. Mohamed Mostafa Soliman',
-    specialty: 'Consultant of Diagnostic & Interventional Radiology',
+    specialty: 'Consultant in Diagnostic & Interventional Radiology',
     about: 'About',
     services: 'Expertise',
     training: 'RadioMind',

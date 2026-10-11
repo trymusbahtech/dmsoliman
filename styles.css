@@ -102,7 +102,7 @@ h1, h2, h3, .section-title { font-family: var(--font-heading); }
 .signature-hero__foot { position: absolute; z-index: 5; right: 0; bottom: 0; left: 0; min-height: 100px; border-top: 1px solid var(--line-light); background: rgba(16,17,23,.48); backdrop-filter: blur(16px); }
 .signature-hero__facts { display: grid; min-height: 100px; grid-template-columns: repeat(4, 1fr); }
 .signature-hero__facts span { display: flex; align-items: center; justify-content: center; gap: 12px; border-inline-end: 1px solid var(--line-light); font-size: 14px; font-weight: 500; }
-.signature-hero__facts span:first-child { border-inline-end: 0; }
+.signature-hero__facts span:last-child { border-inline-end: 0; }
 .signature-hero__facts b { color: var(--aqua); font-family: var(--font-label); font-size: 10px; }
 
 /* Home narrative */
