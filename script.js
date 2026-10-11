@@ -38,16 +38,22 @@
   window.addEventListener('scroll', syncHeader, { passive: true });
 
   if (menuButton && nav) {
+    const closeMenu = () => {
+      body.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    };
+
     menuButton.addEventListener('click', () => {
       const open = body.classList.toggle('menu-open');
       menuButton.setAttribute('aria-expanded', String(open));
     });
 
     nav.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        body.classList.remove('menu-open');
-        menuButton.setAttribute('aria-expanded', 'false');
-      });
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
     });
   }
 
@@ -109,6 +115,9 @@
 
   const heroVideo = document.querySelector('[data-hero-video]');
   const videoButton = document.querySelector('[data-video-control]');
+  if (heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    heroVideo.pause();
+  }
   if (heroVideo && videoButton) {
     videoButton.addEventListener('click', () => {
       if (heroVideo.paused) {
@@ -150,6 +159,10 @@
     const buttons = switcher.querySelectorAll('[data-expertise-button]');
     const panels = switcher.querySelectorAll('[data-expertise-panel]');
 
+    panels.forEach((panel) => {
+      panel.setAttribute('aria-hidden', String(!panel.classList.contains('is-active')));
+    });
+
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
         const target = button.dataset.expertiseButton;
@@ -159,7 +172,9 @@
           item.setAttribute('aria-selected', String(active));
         });
         panels.forEach((panel) => {
-          panel.classList.toggle('is-active', panel.dataset.expertisePanel === target);
+          const active = panel.dataset.expertisePanel === target;
+          panel.classList.toggle('is-active', active);
+          panel.setAttribute('aria-hidden', String(!active));
         });
       });
     });
