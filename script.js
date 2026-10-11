@@ -96,6 +96,25 @@
     document.querySelectorAll('video[autoplay]').forEach((video) => video.pause());
   }
 
+  document.querySelectorAll('[data-featured-video]').forEach((player) => {
+    const video = player.querySelector('[data-featured-video-media]');
+    const playButton = player.querySelector('[data-featured-video-play]');
+    if (!video || !playButton) return;
+
+    playButton.addEventListener('click', async () => {
+      video.muted = false;
+      video.volume = 1;
+      try {
+        await video.play();
+        playButton.hidden = true;
+      } catch {
+        video.controls = true;
+      }
+    });
+    video.addEventListener('play', () => { playButton.hidden = true; });
+    video.addEventListener('ended', () => { playButton.hidden = false; });
+  });
+
   document.querySelectorAll('[data-expertise]').forEach((switcher) => {
     const buttons = [...switcher.querySelectorAll('[data-expertise-button]')];
     const panels = [...switcher.querySelectorAll('[data-expertise-panel]')];

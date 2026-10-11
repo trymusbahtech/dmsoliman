@@ -147,14 +147,17 @@
     <section class="doctor-film section--ink" id="doctor-film">
       <div class="shell doctor-film__grid">
         <div class="doctor-film__copy" data-reveal>
-          <p class="eyebrow">بين العيادة والمنصة</p>
-          <h2 class="section-title">طبيب يمارس المعرفة، ومحاضر يشاركها.</h2>
-          <p>إلى جانب العمل الاستشاري، يقدم د. محمد محتوى ومحاضرات وبرامج تدريبية تنقل الخبرة من غرفة الفحص إلى الأطباء والمتدربين.</p>
+          <p class="eyebrow">الفيلم التعريفي</p>
+          <h2 class="section-title">بين العيادة ومنصة التدريب.</h2>
+          <p>فيديو قصير يعرّف بد. محمد مصطفى سليمان: استشاري أشعة، مؤسس ومدير Smart Scan، ومؤسس ومدير RadioMind للتدريب الطبي.</p>
           <div class="doctor-film__links"><a class="btn" href="training.html">اكتشف RadioMind</a><a class="text-link" href="events.html">المحاضرات والفعاليات <span>←</span></a></div>
         </div>
-        <div class="doctor-film__media" data-reveal>
-          <video autoplay muted loop playsinline preload="metadata" poster="assets/media/doctor-intro-poster.webp"><source src="assets/media/doctor-intro.mp4" type="video/mp4"></video>
-          <span>فيلم تعريفي · بدون صوت</span>
+        <div class="doctor-film__media" data-reveal data-featured-video>
+          <div class="doctor-film__player">
+            <video controls playsinline preload="metadata" poster="assets/media/doctor-intro-poster.webp" data-featured-video-media><source src="assets/media/doctor-story.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video>
+            <button class="doctor-film__play" type="button" aria-label="تشغيل الفيلم التعريفي بالصوت" data-featured-video-play><span aria-hidden="true">▶</span></button>
+          </div>
+          <p class="doctor-film__hint">اضغط للتشغيل بالصوت · مدة الفيديو 10 ثوانٍ</p>
         </div>
       </div>
     </section>
