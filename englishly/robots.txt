@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://trymusbahtech.github.io/dmsoliman/englishly/sitemap.xml
