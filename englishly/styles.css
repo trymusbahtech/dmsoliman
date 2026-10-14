@@ -888,3 +888,48 @@ a.media-story:hover > img { transform: scale(1.035); }
   .method-row b, .journey-step b, .visit-steps span { width: 34px; height: 34px; }
   .program-showcase:hover, .branch-card:hover { transform: none; }
 }
+
+/* Second-pass polish: editorial rhythm, accessibility and English hierarchy */
+::selection { background: rgba(168,95,67,.2); color: var(--ink); }
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid rgba(168,95,67,.42);
+  outline-offset: 4px;
+}
+.lang-link { transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease; }
+.lang-link:hover { color: white; background: var(--ink); border-color: var(--ink); transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(.985); }
+main :target { scroll-margin-top: 140px; }
+
+[dir="ltr"] :is(.section-title, .cta-box h2) em {
+  color: var(--copper);
+  font-family: 'Newsreader', serif;
+  font-size: 1.06em;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -.035em;
+}
+[dir="ltr"] .programs-section .section-title em,
+[dir="ltr"] .value-section .section-title em,
+[dir="ltr"] .cta-box h2 em { color: #efb879; }
+[dir="ltr"] :is(.section-lead, .hero-lead, .page-hero-aside, .program-card p, .program-showcase-copy p) {
+  text-wrap: pretty;
+}
+.hero-frame:focus-visible .hero-play,
+.video-card:focus-visible .play-button { transform: translate(-50%,-50%) scale(1.06); background: white; }
+.media-story:focus-visible .media-play { transform: scale(1.06); background: white; }
+
+.faq-list details { padding-inline: 18px; transition: background .2s ease, padding-inline .2s ease; }
+.faq-list details:first-child { border-top: 1px solid var(--line); }
+.faq-list details[open] { padding-inline: 24px; background: rgba(168,95,67,.045); }
+.faq-list summary:hover { color: var(--copper-dark); }
+.direct-channels-section { padding-bottom: 70px; }
+.contact-last-section { padding-top: 0; }
+
+@media (max-width: 720px) {
+  [dir="ltr"] .page-hero-copy .display { line-height: .98; }
+  [dir="ltr"] .section-title { letter-spacing: -.035em; }
+  .faq-list details,
+  .faq-list details[open] { padding-inline: 12px; }
+  .direct-channels-section { padding-bottom: 48px; }
+  .contact-last-section { padding-bottom: 78px; }
+}

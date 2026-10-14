@@ -5,6 +5,9 @@ const isEnglishPage = document.documentElement.lang === 'en';
 const assetPrefix = isEnglishPage ? '../assets/' : 'assets/';
 const icon = (name) => `<svg class="icon" aria-hidden="true"><use href="${assetPrefix}icons.svg#${name}"></use></svg>`;
 
+menu?.setAttribute('aria-label', menu.getAttribute('aria-label') || (isEnglishPage ? 'Main navigation' : 'التنقل الرئيسي'));
+document.querySelector('.lang-link')?.setAttribute('aria-label', isEnglishPage ? 'عرض النسخة العربية' : 'View the English version');
+
 document.querySelectorAll('.topbar-list a').forEach((link) => {
   if (link.querySelector('.icon')) return;
   const name = link.href.startsWith('tel:') ? 'phone' : link.href.startsWith('mailto:') ? 'mail' : '';
@@ -33,15 +36,24 @@ const syncHeader = () => header?.classList.toggle('is-scrolled', window.scrollY 
 syncHeader();
 window.addEventListener('scroll', syncHeader, { passive: true });
 
+const closeMenu = () => {
+  menu.classList.remove('is-open');
+  menuButton?.setAttribute('aria-expanded', 'false');
+  menuButton?.setAttribute('aria-label', isEnglishPage ? 'Open menu' : 'فتح القائمة');
+};
+
 menuButton?.addEventListener('click', () => {
   const isOpen = menu.classList.toggle('is-open');
   menuButton.setAttribute('aria-expanded', String(isOpen));
+  menuButton.setAttribute('aria-label', isOpen
+    ? (isEnglishPage ? 'Close menu' : 'إغلاق القائمة')
+    : (isEnglishPage ? 'Open menu' : 'فتح القائمة'));
 });
 
-menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-  menu.classList.remove('is-open');
-  menuButton?.setAttribute('aria-expanded', 'false');
-}));
+menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMenu();
+});
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
